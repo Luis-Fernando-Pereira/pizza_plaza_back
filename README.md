@@ -1,7 +1,5 @@
 # pizza_plaza_back
 
-# Pizza Plaza Back-end
-
 Sistema web desenvolvido como projeto universitário da disciplina de Programação Web, com foco em arquitetura moderna baseada em microserviços, APIs REST e integração entre front-end e back-end.
 
 # 1. Escopo do Cliente
