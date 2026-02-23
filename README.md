@@ -30,13 +30,17 @@ O sistema Pizza Plaza será responsável por:
 O sistema será desenvolvido utilizando arquitetura de microserviços, promovendo escalabilidade, organização e separação de responsabilidades.
 
 Arquitetura Geral:
-- Front-end: Angular (MVC)
-- Back-end: APIs REST com Quarkus, Maven para controle de bibliotecas e build. Este projeto será dividido em:
-    -  back: salva as interfaces que o front end usará para interagir com a regra de negócio;
-    -  core: biblioteca contendo os serviços que sabem realizar as operações com as regras de negócios;
-    -  entity: biblioteca contendo o mapeamente de entidades do banco de dados utilizando JPA e Hibernate;
-- Persistência: Hibernate
-- Banco de Dados: PostgreSQL
+- Front-end: Angular v21 (MVC) ;
+- Back-end:
+    - APIs REST com Quarkus v3.31.4;
+    - Linguagem de programação JAVA 25 (LTS);
+    - Maven v3.9.6 para controle de bibliotecas e build.
+  Este projeto será dividido em:
+    - back: salva as interfaces que o front end usará para interagir com a regra de negócio;
+    - core: biblioteca contendo os serviços que sabem realizar as operações com as regras de negócios;
+    - entity: biblioteca contendo o mapeamente de entidades do banco de dados utilizando JPA v3.2.0;
+        - Persistência: Hibernate v6.6.43;
+        - Banco de Dados: PostgreSQL 18;
 
 # 4. Microserviços Propostos
 
