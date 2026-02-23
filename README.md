@@ -31,7 +31,10 @@ O sistema será desenvolvido utilizando arquitetura de microserviços, promovend
 
 Arquitetura Geral:
 - Front-end: Angular (MVC)
-- Back-end: APIs REST com Quarkus, Maven para controle de bibliotecas e build
+- Back-end: APIs REST com Quarkus, Maven para controle de bibliotecas e build. Este projeto será dividido em:
+    -  back: salva as interfaces que o front end usará para interagir com a regra de negócio;
+    -  core: biblioteca contendo os serviços que sabem realizar as operações com as regras de negócios;
+    -  entity: biblioteca contendo o mapeamente de entidades do banco de dados utilizando JPA e Hibernate;
 - Persistência: Hibernate
 - Banco de Dados: PostgreSQL
 
@@ -54,6 +57,7 @@ O sistema será dividido nos seguintes microserviços:
     - Integração com pedidos da loja física
     - Atualização de status (Recebido, Em preparo, Saiu para entrega, Entregue)
     - Rastreamento do pedido pelo cliente
+      
 - Serviço de Vendas e Histórico responsável por:
     - Registro de vendas
     - Relatórios
