@@ -3,8 +3,10 @@ package br.com.pizzaplaza.entity.systemactor;
 import br.com.pizzaplaza.entity.fatherofall.Odin;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "pizzaplaza_user")
 public class User extends Odin {
 
     public String getEmail() {

@@ -1,5 +1,6 @@
 package br.com.pizzaplaza.authservice.controller;
 
+import br.com.pizzaplaza.authservice.service.AuthService;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

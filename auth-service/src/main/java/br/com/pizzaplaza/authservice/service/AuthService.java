@@ -1,4 +1,4 @@
-package br.com.pizzaplaza.authservice.controller;
+package br.com.pizzaplaza.authservice.service;
 
 import io.smallrye.jwt.build.Jwt;
 import jakarta.inject.Singleton;

@@ -51,16 +51,16 @@ public class Odin {
         this.changedAt = changedAt;
     }
 
-    @Column
+    @Column(name = "id_user_who_created")
     private Integer idUserWhoCreated;
 
-    @Column
+    @Column(name = "created_at")
     private Date createdAt;
 
-    @Column
+    @Column(name = "id_user_who_changed")
     private Integer idUserWhoChanged;
 
-    @Column
+    @Column(name = "changed_at")
     private Date changedAt;
 
     public String toString() {
