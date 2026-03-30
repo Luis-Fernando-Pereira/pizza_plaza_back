@@ -49,6 +49,4 @@ public class UserController {
     public Response newSeller(UserDto userDto) {
         return Response.ok().build();
     }
-
-
 }
