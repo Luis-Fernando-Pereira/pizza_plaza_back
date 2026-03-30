@@ -6,7 +6,6 @@ import br.com.pizzaplaza.authservice.strategies.ClientStrategy;
 import br.com.pizzaplaza.authservice.strategies.SellerStrategy;
 import br.com.pizzaplaza.entity.dto.UserDto;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.inject.Singleton;
 import jakarta.transaction.Transactional;
 
 @ApplicationScoped
