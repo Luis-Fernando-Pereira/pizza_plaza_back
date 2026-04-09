@@ -63,6 +63,11 @@ public class Odin {
     @Column(name = "changed_at")
     private Date changedAt;
 
+    @PrePersist
+    public void beforePersist(){
+        this.createdAt = new Date(System.currentTimeMillis());
+    }
+
     public String toString() {
         return "criado por usuário: " + this.idUserWhoCreated;
     }
