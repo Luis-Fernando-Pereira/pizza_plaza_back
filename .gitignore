@@ -4,7 +4,11 @@
 /product-service/.idea/
 /libraries/entity/target/
 /libraries/entity/.idea/
+/libraries/util/.idea/
+/libraries/util/target/
 /.idea/
 /.mvn/
+
+.idea
 
 /api-gateway/target/

@@ -1,9 +1,6 @@
 package br.com.pizzaplaza.authservice.service;
 
 import br.com.pizzaplaza.authservice.interfaces.UserStrategy;
-import br.com.pizzaplaza.authservice.strategies.AdminStrategy;
-import br.com.pizzaplaza.authservice.strategies.ClientStrategy;
-import br.com.pizzaplaza.authservice.strategies.SellerStrategy;
 import br.com.pizzaplaza.entity.dto.UserDto;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Instance;

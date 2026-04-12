@@ -6,6 +6,7 @@ import br.com.pizzaplaza.authservice.repository.UserRepository;
 import br.com.pizzaplaza.entity.dto.UserDto;
 import br.com.pizzaplaza.entity.systemactor.Client;
 import br.com.pizzaplaza.entity.systemactor.User;
+import br.com.pizzaplaza.util.PasswordUtil;
 import io.vertx.core.cli.InvalidValueException;
 import io.vertx.core.cli.Option;
 import jakarta.enterprise.context.ApplicationScoped;
@@ -31,20 +32,20 @@ public class ClientStrategy implements UserStrategy {
         User user = new User();
 
         user.setEmail(userDto.email);
-        user.setPassword(userDto.password);
+        user.setPassword(PasswordUtil.hash(userDto.password));
         user.setAuthenticated(false);
 
         userRepository.save(user);
 
         Client client = new Client();
 
-        client.user = user;
-        client.cpf = userDto.cpf;
-        client.name = userDto.name;
+        client.setUser(user);;
+        client.setCpf(userDto.getCpf());
+        client.setName(userDto.getName());
 
         clientRepository.save(client);
 
-        userDto.link = "http://localhost:8081/user/"+ user.getId();
+        userDto.link = "http://localhost:8081/user/"+ user.getOid();
 
         return userDto;
     }

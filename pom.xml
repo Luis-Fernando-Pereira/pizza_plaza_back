@@ -15,6 +15,7 @@
         <module>auth-service</module>
         <module>product-service</module>
         <module>api-gateway</module>
+        <module>libraries/util</module>
     </modules>
 
     <properties>
