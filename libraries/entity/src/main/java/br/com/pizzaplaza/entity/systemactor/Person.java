@@ -9,6 +9,9 @@ import lombok.Data;
 @MappedSuperclass
 public class Person extends Odin {
 
+    @Column(unique = true)
+    public String cpf;
+
     @Column
     public String name;
 

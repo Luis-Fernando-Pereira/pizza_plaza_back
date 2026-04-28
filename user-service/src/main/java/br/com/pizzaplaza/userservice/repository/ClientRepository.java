@@ -1,4 +1,4 @@
-package br.com.pizzaplaza.authservice.repository;
+package br.com.pizzaplaza.userservice.repository;
 
 import br.com.pizzaplaza.entity.systemactor.Client;
 import jakarta.enterprise.context.ApplicationScoped;

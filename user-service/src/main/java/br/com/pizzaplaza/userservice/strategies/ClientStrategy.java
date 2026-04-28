@@ -1,4 +1,4 @@
-package br.com.pizzaplaza.authservice.strategies;
+package br.com.pizzaplaza.userservice.strategies;
 
 import br.com.pizzaplaza.authservice.interfaces.UserStrategy;
 import br.com.pizzaplaza.authservice.repository.ClientRepository;
@@ -7,16 +7,12 @@ import br.com.pizzaplaza.entity.dto.UserDto;
 import br.com.pizzaplaza.entity.systemactor.Client;
 import br.com.pizzaplaza.entity.systemactor.User;
 import br.com.pizzaplaza.util.PasswordUtil;
+import io.quarkus.security.UnauthorizedException;
 import io.vertx.core.cli.InvalidValueException;
 import io.vertx.core.cli.Option;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import org.hibernate.exception.ConstraintViolationException;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 @ApplicationScoped
 public class ClientStrategy implements UserStrategy {
@@ -30,9 +26,8 @@ public class ClientStrategy implements UserStrategy {
     @Override
     @Transactional
     public UserDto save(UserDto userDto) {
-        if (!isUserDtoValid(userDto)) {
-            throw new InvalidValueException(new Option(),"Usuário inválido");
-        }
+
+        validateUserCredentials(userDto);
 
         User user = new User();
 
@@ -55,9 +50,34 @@ public class ClientStrategy implements UserStrategy {
         return userDto;
     }
 
+    @Transactional
+    public void validateUserCredentials(UserDto userDto) {
+        if (!isUserDtoValid(userDto)) {
+            throw new InvalidValueException(new Option(),"Usuário inválido");
+        }
+
+        if (emailInUse(userDto)) {
+            throw new UnauthorizedException("Email já está em uso.");
+        }
+
+        if (cpfInUse(userDto)) {
+            throw new UnauthorizedException("Email já está em uso.");
+        }
+    }
+
     @Override
     public boolean supports(String userType) {
         return "CLIENT".equals(userType);
+    }
+
+    @Transactional
+    public Boolean emailInUse(UserDto dto) {
+        return userRepository.isEmailInUse(dto.getEmail());
+    }
+
+    @Transactional
+    public Boolean cpfInUse(UserDto dto) {
+        return userRepository.isCpfInUse(dto.getEmail());
     }
 
     public Boolean isUserDtoValid(UserDto userDto) {

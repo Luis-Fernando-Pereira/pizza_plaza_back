@@ -1,9 +1,9 @@
-package br.com.pizzaplaza.authservice.strategies;
+package br.com.pizzaplaza.userservice.strategies;
 
 import br.com.pizzaplaza.authservice.interfaces.UserStrategy;
 import br.com.pizzaplaza.entity.dto.UserDto;
 
-public class AdminStrategy implements UserStrategy {
+public class SellerStrategy implements UserStrategy {
     @Override
     public UserDto save(UserDto userDto) {
         return null;

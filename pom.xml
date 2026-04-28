@@ -16,6 +16,7 @@
         <module>product-service</module>
         <module>api-gateway</module>
         <module>libraries/util</module>
+        <module>user-service</module>
     </modules>
 
     <properties>

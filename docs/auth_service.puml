@@ -1,0 +1,28 @@
+@startuml C4_Component_AuthService
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+title Pizza Plaza - Auth Service (Component Diagram)
+
+Container(api_gateway, "API Gateway", "Gateway", "Ponto de entrada das APIs")
+
+Container_Boundary(auth_microsservice, "Auth Service - Quarkus") {
+
+    Component(auth_controller, "AuthController", "REST Controller (Quarkus)","Expõe endpoints REST para criação, validação e renovação de tokens JWT")
+
+    Component(user_service, "UserService", "Serviço de usuários","Implementa regras de negócio de usuários")
+
+    Component(auth_service, "AuthService", "Serviço de Autenticação/Autorização","Cuida da regra de negócio de autorização e autenticação de usuários")
+
+    Component(user_repository, "UserRepository", "JPA Repository","Persistência de usuários")
+
+}
+
+ContainerDb(database, "PostgreSQL", "PostgreSQL 18", "Banco de dados do sistema")
+
+Rel(api_gateway, auth_controller, "Chama endpoints REST de autorização/authenticação de tokens", "HTTPS/JSON")
+Rel(auth_controller, auth_service, "Autentica, gera JWT, Renova JWT e exclui sessão", "DTOs")
+Rel(auth_service, user_service, "Busca usuários de acordo com regra de negócios de usuário", "DTOs")
+Rel(user_service, user_repository, "Chama consultas e persistencia de entidades JPA", "Entidade JPA")
+Rel(user_repository, database, "Interage com o banco de dados", "JSON")
+
+@enduml

@@ -1,13 +1,10 @@
-package br.com.pizzaplaza.authservice.service;
+package br.com.pizzaplaza.userservice.service;
 
 import br.com.pizzaplaza.authservice.interfaces.UserStrategy;
 import br.com.pizzaplaza.entity.dto.UserDto;
 import io.quarkus.security.UnauthorizedException;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Instance;
-import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import org.hibernate.exception.ConstraintViolationException;
 
 @ApplicationScoped
 public class UserService {

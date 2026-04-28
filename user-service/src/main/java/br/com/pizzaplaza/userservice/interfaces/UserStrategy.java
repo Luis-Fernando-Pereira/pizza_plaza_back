@@ -1,4 +1,4 @@
-package br.com.pizzaplaza.authservice.interfaces;
+package br.com.pizzaplaza.userservice.interfaces;
 
 import br.com.pizzaplaza.entity.dto.UserDto;
 

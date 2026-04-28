@@ -22,18 +22,45 @@ public class AuthController {
     AuthService authService;
 
     @POST
+    @Path("/login")
+    @PermitAll
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.TEXT_PLAIN)
+    public Response login(@Valid LoginDto loginData) {
+        try {
+
+            User user = authService.authenticate(loginData);
+
+            if (user == null) {
+                return Response.status(400).build();
+            }
+
+            return Response.ok(authService.generateJwt(user)).build();
+
+        } catch (Exception e) {
+            return Response.status(400).build();
+        }
+    }
+
+    @POST
     @Path("/auth")
     @PermitAll
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.TEXT_PLAIN)
     public Response auth(@Valid LoginDto loginData) {
-        User user = authService.authenticate(loginData);
+        try {
 
-        if (user == null) {
+            User user = authService.authenticate(loginData);
+
+            if (user == null) {
+                return Response.status(400).build();
+            }
+
+            return Response.ok(authService.generateJwt(user)).build();
+
+        } catch (Exception e) {
             return Response.status(400).build();
         }
-
-        return Response.ok(authService.generateJwt(user)).build();
     }
 
 }

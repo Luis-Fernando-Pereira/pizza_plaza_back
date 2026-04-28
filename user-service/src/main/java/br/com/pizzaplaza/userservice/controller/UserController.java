@@ -1,6 +1,8 @@
-package br.com.pizzaplaza.authservice.controller;
+package br.com.pizzaplaza.userservice.controller;
 
 import br.com.pizzaplaza.authservice.service.UserService;
+import br.com.pizzaplaza.authservice.strategies.AdminStrategy;
+import br.com.pizzaplaza.authservice.strategies.ClientStrategy;
 import br.com.pizzaplaza.entity.dto.UserDto;
 import jakarta.annotation.security.PermitAll;
 import jakarta.annotation.security.RolesAllowed;
@@ -13,7 +15,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import org.hibernate.exception.ConstraintViolationException;
 
 import java.net.URI;
 import java.util.HashMap;
@@ -34,7 +35,26 @@ public class UserController {
     public Response newClient(@Valid UserDto userDto) {
         try {
 
-            userDto = userService.save(userDto);
+            userDto = userService.save(userDto, new ClientStrategy());
+
+            return Response.created(new URI(userDto.getLink())).build();
+
+        } catch (Exception e) {
+
+            return Response.ok(e.getMessage()).build();
+
+        }
+    }
+
+    @Path("admin")
+    @POST
+    @RolesAllowed("admin")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response newAdmin(@Valid UserDto userDto) {
+        try {
+
+            userDto = userService.save(userDto, new AdminStrategy());
             return Response.created(new URI(userDto.getLink())).build();
 
         } catch (NoSuchElementException e) {
@@ -52,15 +72,6 @@ public class UserController {
             return Response.ok(hashMap).build();
 
         }
-    }
-
-    @Path("admin")
-    @POST
-    @RolesAllowed("admin")
-    @Consumes(MediaType.APPLICATION_JSON)
-    @Produces(MediaType.APPLICATION_JSON)
-    public Response newAdmin(UserDto userDto) {
-        return Response.ok().build();
     }
 
     @Path("seller")
